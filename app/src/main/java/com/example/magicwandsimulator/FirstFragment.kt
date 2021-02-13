@@ -5,11 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 import androidx.navigation.fragment.findNavController
 import com.andrognito.patternlockview.PatternLockView
 import com.andrognito.patternlockview.listener.PatternLockViewListener
 import com.andrognito.patternlockview.utils.PatternLockUtils
+import com.plattysoft.leonids.ParticleSystem
 
 
 /**
@@ -18,6 +21,8 @@ import com.andrognito.patternlockview.utils.PatternLockUtils
 class FirstFragment : Fragment() {
 
     private lateinit var wand: PatternLockView
+    private lateinit var effect_view: ConstraintLayout
+    private lateinit var spellFactory:SpellFactory
 
     private val mPatternLockViewListener: PatternLockViewListener =
         object : PatternLockViewListener {
@@ -37,6 +42,11 @@ class FirstFragment : Fragment() {
                     javaClass.name, "Pattern complete: " +
                             PatternLockUtils.patternToString(wand, pattern)
                 )
+
+                val finishedPattern = PatternLockUtils.patternToString(wand, pattern);
+                if (finishedPattern == "012"){
+                    spellFactory.meteor()
+                }
             }
 
             override fun onCleared() {
@@ -53,7 +63,10 @@ class FirstFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        activity?.let{
+            spellFactory = SpellFactory(it)
+        }
+        effect_view = view.findViewById(R.id.effect_content_view)
         wand =  view.findViewById(R.id.pattern_lock_view);
         wand.addPatternLockListener(mPatternLockViewListener);
 

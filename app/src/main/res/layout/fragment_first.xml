@@ -3,14 +3,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="#E2000000"
     android:layout_height="match_parent"
     tools:context=".FirstFragment">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:id="@+id/effect_content_view"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/spell_book_view"
+        android:layout_height="0dp">
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
         android:id="@+id/textview_first"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/hello_first_fragment"
         app:layout_constraintBottom_toTopOf="@id/button_first"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -27,15 +34,24 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textview_first" />
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:id="@+id/spell_book_view"
+        android:layout_height="200dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:src="@drawable/book"
+        />
     <com.andrognito.patternlockview.PatternLockView
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:normalStateColor="#1A000000"
-        app:correctStateColor="@color/design_default_color_on_secondary"
-        app:wrongStateColor="#F44336"
+        app:normalStateColor="#E2000000"
+        app:dotNormalSize="12dp"
+        app:dotSelectedSize="24dp"
+        app:pathWidth="12dp"
         android:id="@+id/pattern_lock_view"
         android:layout_width="wrap_content"
-        android:layout_height="280dp"/>
+        android:layout_height="200dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
