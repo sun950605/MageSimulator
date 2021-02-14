@@ -16,17 +16,10 @@ Drag and drop the MageSimulator.apk file under app/ folder to your emulator to i
 # Game Mechanic
 Draw your defensive spells on the spellbook to block her attacks,
 shield only blocks same element, successful block can prevent damage while generate HP and Mana 
-
 SPEND YOUR MANA on powerful spell to defeat the evil dragon
-
 She changes type occasionally(The game world changes accordingly)
-fire attack is good against ice type
-ice attack is good against fire type
-Meteor strike is good against dragon type
-
 Use the correct type deals 2x damage!!
 
-# Spell Book
 # Defensive Spells
 Cast this spell against fire attack\
 <img src="./app/fire.jpg"  width="200" height="400">
@@ -45,8 +38,8 @@ Cast this spell against dragon attack\
 
 
 # Offensive Spells
-Start with column one to cast fire spells (good against water type)
-Start with column two to cast water spells (good against fire type)
-Start with column three to cast meteor strike (good against space type)
+Start with column one to cast fire spells (good against water type)\
+Start with column two to cast water spells (good against fire type)\
+Start with column three to cast meteor strike (good against space type)\
 
 
