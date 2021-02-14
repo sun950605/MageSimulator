@@ -48,7 +48,7 @@ class Game(private var hpBar: CardView , private var manaBar:CardView,private va
             changeHp(damage)
         }else{
             removeShield()
-            changeHp(-damage)
+            changeHp(-damage/2)
         }
     }
 
@@ -107,11 +107,18 @@ class Game(private var hpBar: CardView , private var manaBar:CardView,private va
     fun startAttack(){
         var timer = Random.nextLong(3,6)
         var type = Random.nextInt(1,4)
+        var changeType = Random.nextInt(1,5)
+
         android.util.Log.e("tag", type.toString())
         val handler = Handler(Looper.getMainLooper())
         val runnable:Runnable = Runnable {
-            dragon.attack(type)
-            startAttack()
+            if (changeType == 1) {
+                dragon.changeState(type)
+                startAttack()
+            }else{
+                dragon.attack(type)
+                startAttack()
+            }
         }
         handler.postDelayed(runnable , timer * 1000)
     }

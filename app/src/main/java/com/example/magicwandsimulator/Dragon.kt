@@ -29,9 +29,10 @@ class Dragon(private val drgView: ImageView , private val drgEffectView:ImageVie
 
 
     fun hit(){
-        if(!beingHit) {
+        android.util.Log.e("tag" , "hitting!!! ${changiing}")
+        if(changiing != true) {
             beingHit = true
-            anim.stop()
+            //anim.stop()
             drgView.apply {
                 setBackgroundResource(R.drawable.drag_attack1)
                 anim = background as AnimationDrawable
@@ -43,7 +44,10 @@ class Dragon(private val drgView: ImageView , private val drgEffectView:ImageVie
                 totalDuration += anim.getDuration(i)
             }
             val timer = Timer()
-            val timerTask: TimerTask = timerTask { idle() }
+            val timerTask: TimerTask = timerTask {
+                idle()
+                beingHit = false
+            }
             timer.schedule(timerTask, totalDuration)
         }
     }
@@ -94,9 +98,11 @@ class Dragon(private val drgView: ImageView , private val drgEffectView:ImageVie
         game = _game
     }
 
-    fun changeState(){
+    fun changeState(type:Int){
+
         anim.stop()
         changiing = true
+        android.util.Log.e("tag" ,"changing = ${changiing.toString()}")
         drgView.apply {
             setBackgroundResource(R.drawable.drag_change_state)
             anim = background as AnimationDrawable
@@ -108,9 +114,13 @@ class Dragon(private val drgView: ImageView , private val drgEffectView:ImageVie
             totalDuration += anim.getDuration(i)
         }
         val timer = Timer()
-        val timerTask: TimerTask = timerTask{ idle()}
+        val timerTask: TimerTask = timerTask{
+            idle()
+            changiing = false
+            android.util.Log.e("tag" ,"changing = ${changiing.toString()}")
+        }
         timer.schedule(timerTask, totalDuration)
-        changiing = false
+
     }
 
 

@@ -136,13 +136,6 @@ class FirstFragment : Fragment() {
                     cooldown(cd)
                 }
 
-                if (finishedPattern == "258"){
-                    dragon.changeState()
-                }
-
-                if (finishedPattern == "852"){
-                    //dragon.attack()
-                }
             }
 
             fun cooldown(cd:Long){
