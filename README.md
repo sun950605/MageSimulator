@@ -40,6 +40,6 @@ Cast this spell against dragon attack\
 # Offensive Spells
 Start with column one to cast fire spells (good against water type)\
 Start with column two to cast water spells (good against fire type)\
-Start with column three to cast meteor strike (good against space type)\
+Start with column three to cast meteor strike (good against space type)
 
 
