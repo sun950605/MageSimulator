@@ -130,7 +130,7 @@ class FirstFragment : Fragment() {
                 }
 
                 if (finishedPattern == "258"){
-                    dragon.hit()
+                    dragon.changeState()
                 }
 
                 if (finishedPattern == "852"){

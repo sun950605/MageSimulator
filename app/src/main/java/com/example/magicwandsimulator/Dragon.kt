@@ -13,6 +13,7 @@ class Dragon(private val drgView: ImageView){
     private lateinit var idel2Anim: AnimationDrawable
     private  var attacking = false
     private  var beingHit = false
+    private  var changiing = false
     fun idle(){
         beingHit = false
         drgView.apply {
@@ -60,6 +61,25 @@ class Dragon(private val drgView: ImageView){
         val timerTask: TimerTask = timerTask{ idle()}
         timer.schedule(timerTask, totalDuration)
         attacking = false
+    }
+
+    fun changeState(){
+        anim.stop()
+        changiing = true
+        drgView.apply {
+            setBackgroundResource(R.drawable.drag_change_state)
+            anim = background as AnimationDrawable
+        }
+
+        anim.start()
+        var totalDuration: Long = 0
+        for (i in 0 until anim.numberOfFrames) {
+            totalDuration += anim.getDuration(i)
+        }
+        val timer = Timer()
+        val timerTask: TimerTask = timerTask{ idle()}
+        timer.schedule(timerTask, totalDuration)
+        changiing = false
     }
 
 

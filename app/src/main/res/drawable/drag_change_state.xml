@@ -2,26 +2,34 @@
 <animation-list xmlns:android="http://schemas.android.com/apk/res/android"
     android:oneshot="false">
 
-    <item android:drawable="@drawable/tile042" android:duration="150" />
-    <item android:drawable="@drawable/tile043" android:duration="150" />
-    <item android:drawable="@drawable/tile044" android:duration="150" />
-    <item android:drawable="@drawable/tile045" android:duration="150" />
-    <item android:drawable="@drawable/tile046" android:duration="150" />
-    <item android:drawable="@drawable/tile047" android:duration="150" />
-    <item android:drawable="@drawable/tile048" android:duration="150" />
-    <item android:drawable="@drawable/tile049" android:duration="150" />
-    <item android:drawable="@drawable/tile050" android:duration="150" />
-    <item android:drawable="@drawable/tile051" android:duration="150" />
-    <item android:drawable="@drawable/tile052" android:duration="150" />
-    <item android:drawable="@drawable/tile053" android:duration="150" />
-    <item android:drawable="@drawable/tile054" android:duration="150" />
-    <item android:drawable="@drawable/tile055" android:duration="150" />
-    <item android:drawable="@drawable/tile056" android:duration="150" />
-    <item android:drawable="@drawable/tile057" android:duration="150" />
-    <item android:drawable="@drawable/tile058" android:duration="150" />
-    <item android:drawable="@drawable/tile059" android:duration="150" />
-    <item android:drawable="@drawable/tile060" android:duration="150" />
-    <item android:drawable="@drawable/tile061" android:duration="150" />
-    <item android:drawable="@drawable/tile042" android:duration="150" />
+    <item android:drawable="@drawable/tile042" android:duration="100" />
+    <item android:drawable="@drawable/tile043" android:duration="100" />
+    <item android:drawable="@drawable/tile044" android:duration="100" />
+    <item android:drawable="@drawable/tile045" android:duration="100" />
+    <item android:drawable="@drawable/tile046" android:duration="100" />
+    <item android:drawable="@drawable/tile047" android:duration="100" />
+    <item android:drawable="@drawable/tile048" android:duration="100" />
+    <item android:drawable="@drawable/tile049" android:duration="100" />
+    <item android:drawable="@drawable/tile050" android:duration="100" />
+    <item android:drawable="@drawable/tile051" android:duration="100" />
+    <item android:drawable="@drawable/tile052" android:duration="100" />
+    <item android:drawable="@drawable/tile053" android:duration="100" />
+    <item android:drawable="@drawable/tile054" android:duration="100" />
+    <item android:drawable="@drawable/tile055" android:duration="100" />
+    <item android:drawable="@drawable/tile056" android:duration="100" />
+    <item android:drawable="@drawable/tile057" android:duration="100" />
+    <item android:drawable="@drawable/tile058" android:duration="100" />
+    <item android:drawable="@drawable/tile059" android:duration="100" />
+
+    <item android:drawable="@drawable/tile047" android:duration="100" />
+    <item android:drawable="@drawable/tile046" android:duration="100" />
+    <item android:drawable="@drawable/tile045" android:duration="100" />
+    <item android:drawable="@drawable/tile044" android:duration="100" />
+    <item android:drawable="@drawable/tile043" android:duration="100" />
+    <item android:drawable="@drawable/tile042" android:duration="100" />
+    <item android:drawable="@drawable/tile042" android:duration="100" />
+    <item android:drawable="@drawable/tile042" android:duration="100" />
+
+
 
 </animation-list>
