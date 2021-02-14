@@ -47,6 +47,18 @@ class FirstFragment : Fragment() {
                 if (finishedPattern == "012"){
                     spellFactory.meteor()
                 }
+
+                if (finishedPattern == "345"){
+                    spellFactory.lightning()
+                }
+
+                if (finishedPattern == "678"){
+                    spellFactory.fire()
+                }
+
+                if (finishedPattern == "036"){
+                    spellFactory.water()
+                }
             }
 
             override fun onCleared() {
