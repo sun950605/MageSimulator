@@ -28,7 +28,7 @@ Use the correct type deals 2x damage!!
 
 
 Cast this spell against fire attack
-![Alt text](./app/fire.jpg?raw=true "Title")
+<img src="./app/fire.jpg"  width="200" height="400">
 
 
 
