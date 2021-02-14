@@ -12,9 +12,12 @@ class Dragon(private val drgView: ImageView , private val drgEffectView:ImageVie
     private lateinit var anim: AnimationDrawable
     private lateinit var efffectAnim: AnimationDrawable
     private lateinit var idel2Anim: AnimationDrawable
+    private lateinit var game:Game
     private  var attacking = false
     private  var beingHit = false
     private  var changiing = false
+    private var FIRE_DAMAGE = 20.00
+    private var hp = 100
     fun idle(){
         beingHit = false
         drgView.apply {
@@ -46,7 +49,7 @@ class Dragon(private val drgView: ImageView , private val drgEffectView:ImageVie
     }
 
     fun attack(){
-        anim.stop()
+        //anim.stop()
         attacking = true
         drgEffectView.visibility= View.VISIBLE
         drgView.apply {
@@ -70,11 +73,16 @@ class Dragon(private val drgView: ImageView , private val drgEffectView:ImageVie
         val timerTask: TimerTask = timerTask{
             idle()
             drgEffectView.visibility= View.INVISIBLE
+            game.damagePlayer(FIRE_DAMAGE , 1)
         }
         timer.schedule(timerTask, totalDuration)
         attacking = false
 
 
+    }
+
+    fun setGame(_game:Game){
+        game = _game
     }
 
     fun changeState(){

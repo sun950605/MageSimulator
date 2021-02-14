@@ -59,8 +59,8 @@ class FirstFragment : Fragment() {
         context?.let{
             val displayMetrics: DisplayMetrics = it.getResources().getDisplayMetrics()
             val margin = Math.round(10 / (displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT))
-            game = Game(view.findViewById(R.id.hp_bar) , view.findViewById(R.id.mana_bar))
-
+            game = Game(view.findViewById(R.id.hp_bar) , view.findViewById(R.id.mana_bar) ,shieldView, dragon)
+            game.init()
         }
         view.findViewById<Button>(R.id.button_first).setOnClickListener {
             findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
@@ -113,19 +113,16 @@ class FirstFragment : Fragment() {
                 }
 
                 if (finishedPattern == "048"){
-                    shieldView.setBackgroundResource(R.color.fire)
                     game.changeShield(1)
                     game.changeMana(30)
                 }
 
                 if (finishedPattern == "246"){
-                    shieldView.setBackgroundResource(R.color.water)
                     game.changeShield(2)
                     game.changeMana(30)
                 }
 
                 if (finishedPattern == "147"){
-                    shieldView.setBackgroundResource(R.color.elec)
                     game.changeShield(3)
                     game.changeMana(30)
                 }
