@@ -1,6 +1,5 @@
 package com.example.magicwandsimulator
 
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.graphics.drawable.AnimationDrawable
@@ -10,9 +9,7 @@ import android.view.View
 import android.widget.ImageView
 import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.fragment.app.FragmentActivity
 import com.andrognito.patternlockview.PatternLockView
-import java.util.*
 import kotlin.random.Random
 
 
@@ -27,15 +24,17 @@ class Game(private val context: Context, private var hpBar: CardView, private va
     private var gameOver = false;
     var previousMap:Int = 0
     lateinit var shieldAnim: AnimationDrawable
-    private lateinit var timer: Timer
+    private  var timer: Long = 0
     private var gameCleared = false
-
+    private var gameLoss = false
+    private var gameWin = false
     fun init(){
         dragon.setGame(this)
         dragon.type = Random.nextInt(1,4)
         previousMap = dragon.type
         changeMap(dragon.type)
         startAttack()
+        var timer = System.currentTimeMillis()
     }
 
     fun changeShield(id:Int){
@@ -129,7 +128,17 @@ class Game(private val context: Context, private var hpBar: CardView, private va
         dragon.killDragon()
         if(!gameCleared){
             gameCleared = true
-            context.startActivity(Intent(context, EndGameActivity::class.java))
+            val tEnd = System.currentTimeMillis()
+            val tDelta: Long = tEnd - timer
+            val elapsedSeconds = tDelta / 1000.0
+            val intent = Intent(context, EndGameActivity::class.java)
+            intent.putExtra("TIME" , elapsedSeconds)
+            if (gameLoss) {
+                intent.putExtra("STAT", false)
+            }else{
+                intent.putExtra("STAT", true)
+            }
+            context.startActivity(intent)
         }
 
     }
@@ -137,7 +146,7 @@ class Game(private val context: Context, private var hpBar: CardView, private va
     fun changeHp(change:Double){
         if (hp  - change <= 0.00){
             hp = 0.00
-            gameOver = true
+            gameLoss = true
             clearGame()
         }else if (hp - change  >= 100){
             hp = 100.00
@@ -168,12 +177,12 @@ class Game(private val context: Context, private var hpBar: CardView, private va
                 }
                 dragon.changeState(mapType)
                 previousMap = mapType
-                if(!gameOver) {
+                if(!gameLoss) {
                     startAttack()
                 }
             }else{
                 dragon.attack(type)
-                if(!gameOver) {
+                if(!gameLoss) {
                     startAttack()
                 }
             }

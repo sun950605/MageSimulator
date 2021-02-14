@@ -9,8 +9,6 @@
     <ImageView
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-
-        android:src="@drawable/drag_idle"
         android:layout_width="match_parent"
         android:id="@+id/end_game_anim"
         android:layout_height="300dp"/>
