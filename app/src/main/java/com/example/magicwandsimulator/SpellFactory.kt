@@ -27,11 +27,11 @@ class SpellFactory(private val activity: FragmentActivity) {
 
         ParticleSystem(activity, 1000, R.mipmap.fire1, 10000)
             .setSpeedModuleAndAngleRange(0.2f, 0.5f, 0, 360)
-            .emit(500, 500, 200, 1000)
+            .emit(500, 500, 35, 1000)
 
         ParticleSystem(activity, 1000, R.mipmap.fire2, 10000)
             .setSpeedModuleAndAngleRange(0.2f, 0.5f, 0, 360)
-            .emit(500, 500, 200, 1000)
+            .emit(500, 500, 35, 1000)
     }
 
 
@@ -39,11 +39,11 @@ class SpellFactory(private val activity: FragmentActivity) {
 
         ParticleSystem(activity, 1000, R.mipmap.water1, 10000)
             .setSpeedModuleAndAngleRange(0.2f, 0.5f, 0, 360)
-            .emit(500, 500, 200, 1000)
+            .emit(500, 500, 35, 1000)
 
         ParticleSystem(activity, 1000, R.mipmap.water2, 10000)
             .setSpeedModuleAndAngleRange(0.2f, 0.5f, 0, 360)
-            .emit(500, 500, 20, 1000)
+            .emit(500, 500, 35, 1000)
     }
 
 

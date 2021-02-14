@@ -92,50 +92,56 @@ class FirstFragment : Fragment() {
                 )
 
                 val finishedPattern = PatternLockUtils.patternToString(wand, pattern);
-                if (finishedPattern == "012" && game.mana >= 30){
-                    spellFactory.meteor()
-                    game.changeMana(-30)
-                    dragon.hit()
-                    cooldown(cd)
-                }
-
-                if (finishedPattern == "345" && game.mana >= 30){
-                    spellFactory.lightning()
-                    game.changeMana(-30)
-                    dragon.hit()
-                    cooldown(cd)
-                }
-
-                if (finishedPattern == "678" && game.mana >= 30){
-                    spellFactory.fire()
-                    game.changeMana(-30)
-                    dragon.hit()
-                    cooldown(cd)
-                }
-
-                if (finishedPattern == "036" && game.mana >= 30){
-                    spellFactory.water()
-                    game.changeMana(-30)
-                    dragon.hit()
-                    cooldown(cd)
-                }
-
                 if (finishedPattern == "048"){
                     game.changeShield(1)
                     //game.changeMana(30)
                     cooldown(cd)
                 }
 
-                if (finishedPattern == "246"){
+                else if (finishedPattern == "246"){
                     game.changeShield(2)
                     //game.changeMana(30)
                     cooldown(cd)
                 }
 
-                if (finishedPattern == "147"){
+                else if (finishedPattern == "147"){
                     game.changeShield(3)
-                   // game.changeMana(30)
+                    //game.changeMana(30)
                     cooldown(cd)
+                }
+                else if (finishedPattern == "0124678"){
+                    spellFactory.lightning()
+                    game.changeMana(-30)
+                    dragon.hit()
+                    cooldown(cd)
+                }
+
+
+                else{
+                    if (finishedPattern.length >=3 && finishedPattern[0] == '0' || finishedPattern[0] == '3' || finishedPattern[0] == '6' ){
+                        spellFactory.fire()
+                        game.changeMana(-30)
+                        dragon.hit()
+                        cooldown(cd)
+                    }
+
+                    if (finishedPattern.length >=3 && finishedPattern[0] == '1' || finishedPattern[0] == '4' || finishedPattern[0] == '7' ){
+                        spellFactory.water()
+                        game.changeMana(-30)
+                        dragon.hit()
+                        cooldown(cd)
+                    }
+
+                    if (finishedPattern.length >=3 && finishedPattern[0] == '2' || finishedPattern[0] == '5' || finishedPattern[0] == '8' ){
+                        spellFactory.meteor()
+                        game.changeMana(-30)
+                        dragon.hit()
+                        cooldown(cd)
+                    }
+
+
+
+
                 }
 
             }
