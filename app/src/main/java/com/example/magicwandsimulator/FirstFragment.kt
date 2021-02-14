@@ -1,6 +1,7 @@
 package com.example.magicwandsimulator
 
 import android.graphics.drawable.AnimationDrawable
+import android.media.Image
 import android.os.Bundle
 import android.util.DisplayMetrics
 import android.view.LayoutInflater
@@ -24,9 +25,46 @@ class FirstFragment : Fragment() {
     private lateinit var wand: PatternLockView
     private lateinit var effect_view: ConstraintLayout
     private lateinit var spellFactory:SpellFactory
-    private lateinit var shieldAnim: AnimationDrawable
+    private lateinit var dragAnim: AnimationDrawable
     private lateinit var shieldView:ImageView
     private lateinit var game:Game
+
+
+
+    override fun onCreateView(
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
+    ): View? {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_first, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        activity?.let{
+            spellFactory = SpellFactory(it)
+        }
+
+        effect_view = view.findViewById(R.id.effect_content_view)
+        wand =  view.findViewById(R.id.pattern_lock_view);
+        wand.addPatternLockListener(mPatternLockViewListener);
+        shieldView = view.findViewById(R.id.shield_view)
+
+
+        val dragImgView =  view.findViewById<ImageView>(R.id.dragon_img_view)
+        val dragon = Dragon(dragImgView)
+        dragon.idle()
+
+        context?.let{
+            val displayMetrics: DisplayMetrics = it.getResources().getDisplayMetrics()
+            val margin = Math.round(10 / (displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT))
+            game = Game(view.findViewById(R.id.hp_bar) , view.findViewById(R.id.mana_bar))
+
+        }
+        view.findViewById<Button>(R.id.button_first).setOnClickListener {
+            findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
+        }
+    }
 
 
     private val mPatternLockViewListener: PatternLockViewListener =
@@ -92,36 +130,5 @@ class FirstFragment : Fragment() {
                 android.util.Log.e(javaClass.name, "Pattern has been cleared")
             }
         }
-    override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?,
-            savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_first, container, false)
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        activity?.let{
-            spellFactory = SpellFactory(it)
-        }
-
-        effect_view = view.findViewById(R.id.effect_content_view)
-        wand =  view.findViewById(R.id.pattern_lock_view);
-        wand.addPatternLockListener(mPatternLockViewListener);
-        shieldView = view.findViewById(R.id.shield_view)
-
-        context?.let{
-            val displayMetrics: DisplayMetrics = it.getResources().getDisplayMetrics()
-            val margin = Math.round(10 / (displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT))
-            game = Game(view.findViewById(R.id.hp_bar) , view.findViewById(R.id.mana_bar))
-
-        }
-        view.findViewById<Button>(R.id.button_first).setOnClickListener {
-            findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
-        }
-    }
-
-
 
 }
