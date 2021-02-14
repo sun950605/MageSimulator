@@ -8,7 +8,11 @@ Fight against Onyxia the black dragon by drawing out spells on your phone!
 
 # Running the project
 
+Option 1)
 Open the project in android studio and click run, with api 29
+
+option 2)
+Drag and drop the MageSimulator.apk file under app/ folder to your emulator to install directly
 
 
 # Game Mechanic
