@@ -2,14 +2,15 @@ package com.example.magicwandsimulator
 
 import android.R.attr.animation
 import android.graphics.drawable.AnimationDrawable
+import android.view.View
 import android.widget.ImageView
 import java.util.*
 import kotlin.concurrent.timerTask
 
 
-class Dragon(private val drgView: ImageView){
+class Dragon(private val drgView: ImageView , private val drgEffectView:ImageView){
     private lateinit var anim: AnimationDrawable
-
+    private lateinit var efffectAnim: AnimationDrawable
     private lateinit var idel2Anim: AnimationDrawable
     private  var attacking = false
     private  var beingHit = false
@@ -44,23 +45,36 @@ class Dragon(private val drgView: ImageView){
         }
     }
 
-    fun attack2(){
+    fun attack(){
         anim.stop()
         attacking = true
+        drgEffectView.visibility= View.VISIBLE
         drgView.apply {
             setBackgroundResource(R.drawable.drag_attack2)
             anim = background as AnimationDrawable
         }
 
+        drgEffectView.apply {
+            setBackgroundResource(R.drawable.drag_fire)
+            efffectAnim = background as AnimationDrawable
+        }
+
         anim.start()
+        efffectAnim.start()
+
         var totalDuration: Long = 0
         for (i in 0 until anim.numberOfFrames) {
             totalDuration += anim.getDuration(i)
         }
         val timer = Timer()
-        val timerTask: TimerTask = timerTask{ idle()}
+        val timerTask: TimerTask = timerTask{
+            idle()
+            drgEffectView.visibility= View.INVISIBLE
+        }
         timer.schedule(timerTask, totalDuration)
         attacking = false
+
+
     }
 
     fun changeState(){

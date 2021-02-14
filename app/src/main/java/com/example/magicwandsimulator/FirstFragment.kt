@@ -52,7 +52,8 @@ class FirstFragment : Fragment() {
 
 
         val dragImgView =  view.findViewById<ImageView>(R.id.dragon_img_view)
-        dragon = Dragon(dragImgView)
+        val dragonEffectView = view.findViewById<ImageView>(R.id.dragon_effect_view)
+        dragon = Dragon(dragImgView , dragonEffectView)
         dragon.idle()
 
         context?.let{
@@ -134,7 +135,7 @@ class FirstFragment : Fragment() {
                 }
 
                 if (finishedPattern == "852"){
-                    dragon.attack2()
+                    dragon.attack()
                 }
             }
 
