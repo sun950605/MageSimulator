@@ -27,4 +27,8 @@ Meteor strike is good against dragon type
 Use the correct type deals 2x damage!!
 
 
+Cast this spell against fire attack
+![Alt text](./app/fire.jpg?raw=true "Title")
+
+
 
