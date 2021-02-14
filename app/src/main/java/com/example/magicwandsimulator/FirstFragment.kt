@@ -1,18 +1,18 @@
 package com.example.magicwandsimulator
 
+import android.graphics.drawable.AnimationDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
 import androidx.navigation.fragment.findNavController
 import com.andrognito.patternlockview.PatternLockView
 import com.andrognito.patternlockview.listener.PatternLockViewListener
 import com.andrognito.patternlockview.utils.PatternLockUtils
-import com.plattysoft.leonids.ParticleSystem
 
 
 /**
@@ -23,6 +23,10 @@ class FirstFragment : Fragment() {
     private lateinit var wand: PatternLockView
     private lateinit var effect_view: ConstraintLayout
     private lateinit var spellFactory:SpellFactory
+    private lateinit var shieldAnim: AnimationDrawable
+    private lateinit var shieldView:ImageView
+    private val game = Game()
+
 
     private val mPatternLockViewListener: PatternLockViewListener =
         object : PatternLockViewListener {
@@ -59,6 +63,21 @@ class FirstFragment : Fragment() {
                 if (finishedPattern == "036"){
                     spellFactory.water()
                 }
+
+                if (finishedPattern == "048"){
+                    shieldView.setBackgroundResource(R.color.fire)
+                    game.changeShield(1)
+                }
+
+                if (finishedPattern == "246"){
+                    shieldView.setBackgroundResource(R.color.water)
+                    game.changeShield(2)
+                }
+
+                if (finishedPattern == "147"){
+                    shieldView.setBackgroundResource(R.color.elec)
+                    game.changeShield(3)
+                }
             }
 
             override fun onCleared() {
@@ -81,9 +100,13 @@ class FirstFragment : Fragment() {
         effect_view = view.findViewById(R.id.effect_content_view)
         wand =  view.findViewById(R.id.pattern_lock_view);
         wand.addPatternLockListener(mPatternLockViewListener);
+        shieldView = view.findViewById(R.id.shield_view)
 
         view.findViewById<Button>(R.id.button_first).setOnClickListener {
             findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
         }
     }
+
+
+
 }
