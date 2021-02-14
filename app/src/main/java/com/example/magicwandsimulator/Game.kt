@@ -6,9 +6,11 @@ import android.util.DisplayMetrics
 import android.widget.ImageView
 import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
+import com.andrognito.patternlockview.PatternLockView
+import kotlin.random.Random
 
 
-class Game(private var hpBar: CardView , private var manaBar:CardView,private var shieldView: ImageView , private val dragon: Dragon ) {
+class Game(private var hpBar: CardView , private var manaBar:CardView,private var shieldView: ImageView , private val dragon: Dragon, private val spellBook:PatternLockView) {
 
     private var shieldId = 0;
     var hp = 100.00;
@@ -20,6 +22,7 @@ class Game(private var hpBar: CardView , private var manaBar:CardView,private va
 
     fun init(){
         dragon.setGame(this)
+        startAttack()
     }
 
     fun changeShield(id:Int){
@@ -32,12 +35,9 @@ class Game(private var hpBar: CardView , private var manaBar:CardView,private va
     }
 
 
-
     fun setManaBar(){
-
         android.util.Log.e("tag" , ((mana/maxMana) * width).toString())
         var param = ConstraintLayout.LayoutParams((((mana/maxMana) * width)).toInt() , ConstraintLayout.LayoutParams.MATCH_PARENT)
-
         manaBar.layoutParams = param
         manaBar.radius = 30f
     }
@@ -48,6 +48,7 @@ class Game(private var hpBar: CardView , private var manaBar:CardView,private va
             changeHp(damage)
         }else{
             removeShield()
+            changeHp(-damage)
         }
     }
 
@@ -66,9 +67,11 @@ class Game(private var hpBar: CardView , private var manaBar:CardView,private va
         val handler = Handler(Looper.getMainLooper())
         val runnable:Runnable = Runnable {
             shieldView.setBackgroundResource(R.color.background)
+            changeMana(30)
         }
         handler.post(runnable)
     }
+
     fun changeMana(change:Int){
         if (mana + change >= maxMana){
             mana = maxMana;
@@ -85,10 +88,11 @@ class Game(private var hpBar: CardView , private var manaBar:CardView,private va
 
 
     fun changeHp(change:Double){
-
         if (hp  - change <= 0.00){
             hp = 0.00
             gameOver = true
+        }else if (hp - change  >= 100){
+            hp = 100.00
         }else{
             hp -= change
         }
@@ -98,6 +102,18 @@ class Game(private var hpBar: CardView , private var manaBar:CardView,private va
             setHPBar()
         }
         handler.post(runnable)
+    }
+
+    fun startAttack(){
+        var timer = Random.nextLong(3,6)
+        var type = Random.nextInt(1,4)
+        android.util.Log.e("tag", type.toString())
+        val handler = Handler(Looper.getMainLooper())
+        val runnable:Runnable = Runnable {
+            dragon.attack(type)
+            startAttack()
+        }
+        handler.postDelayed(runnable , timer * 1000)
     }
 
     fun setHPBar(){

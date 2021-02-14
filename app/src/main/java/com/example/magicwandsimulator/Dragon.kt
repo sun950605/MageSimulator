@@ -48,9 +48,18 @@ class Dragon(private val drgView: ImageView , private val drgEffectView:ImageVie
         }
     }
 
-    fun attack(){
+    fun attack(type:Int){
         //anim.stop()
         attacking = true
+        var resourceID = if (type == 1){
+            R.drawable.drag_fire
+        }else if (type == 2){
+            R.drawable.drag_water
+        }
+        else{
+            R.drawable.drag_elec
+        }
+
         drgEffectView.visibility= View.VISIBLE
         drgView.apply {
             setBackgroundResource(R.drawable.drag_attack2)
@@ -58,7 +67,7 @@ class Dragon(private val drgView: ImageView , private val drgEffectView:ImageVie
         }
 
         drgEffectView.apply {
-            setBackgroundResource(R.drawable.drag_fire)
+            setBackgroundResource(resourceID)
             efffectAnim = background as AnimationDrawable
         }
 
@@ -73,7 +82,7 @@ class Dragon(private val drgView: ImageView , private val drgEffectView:ImageVie
         val timerTask: TimerTask = timerTask{
             idle()
             drgEffectView.visibility= View.INVISIBLE
-            game.damagePlayer(FIRE_DAMAGE , 1)
+            game.damagePlayer(FIRE_DAMAGE , type)
         }
         timer.schedule(timerTask, totalDuration)
         attacking = false

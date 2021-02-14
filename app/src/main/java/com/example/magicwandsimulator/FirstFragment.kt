@@ -1,8 +1,8 @@
 package com.example.magicwandsimulator
 
 import android.graphics.drawable.AnimationDrawable
-import android.media.Image
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.view.View
@@ -27,8 +27,10 @@ class FirstFragment : Fragment() {
     private lateinit var spellFactory:SpellFactory
     private lateinit var dragAnim: AnimationDrawable
     private lateinit var shieldView:ImageView
+    private lateinit var spellBookView:ImageView
     private lateinit var game:Game
     private lateinit var dragon:Dragon
+    private var cd:Long = 500
 
 
     override fun onCreateView(
@@ -49,7 +51,7 @@ class FirstFragment : Fragment() {
         wand =  view.findViewById(R.id.pattern_lock_view);
         wand.addPatternLockListener(mPatternLockViewListener);
         shieldView = view.findViewById(R.id.shield_view)
-
+        spellBookView = view.findViewById(R.id.spell_book_view)
 
         val dragImgView =  view.findViewById<ImageView>(R.id.dragon_img_view)
         val dragonEffectView = view.findViewById<ImageView>(R.id.dragon_effect_view)
@@ -59,7 +61,7 @@ class FirstFragment : Fragment() {
         context?.let{
             val displayMetrics: DisplayMetrics = it.getResources().getDisplayMetrics()
             val margin = Math.round(10 / (displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT))
-            game = Game(view.findViewById(R.id.hp_bar) , view.findViewById(R.id.mana_bar) ,shieldView, dragon)
+            game = Game(view.findViewById(R.id.hp_bar) , view.findViewById(R.id.mana_bar) ,shieldView, dragon, wand)
             game.init()
         }
         view.findViewById<Button>(R.id.button_first).setOnClickListener {
@@ -92,39 +94,46 @@ class FirstFragment : Fragment() {
                     spellFactory.meteor()
                     game.changeMana(-30)
                     dragon.hit()
+                    cooldown(cd)
                 }
 
                 if (finishedPattern == "345" && game.mana >= 30){
                     spellFactory.lightning()
                     game.changeMana(-30)
                     dragon.hit()
+                    cooldown(cd)
                 }
 
                 if (finishedPattern == "678" && game.mana >= 30){
                     spellFactory.fire()
                     game.changeMana(-30)
                     dragon.hit()
+                    cooldown(cd)
                 }
 
                 if (finishedPattern == "036" && game.mana >= 30){
                     spellFactory.water()
                     game.changeMana(-30)
                     dragon.hit()
+                    cooldown(cd)
                 }
 
                 if (finishedPattern == "048"){
                     game.changeShield(1)
                     game.changeMana(30)
+                    cooldown(cd)
                 }
 
                 if (finishedPattern == "246"){
                     game.changeShield(2)
                     game.changeMana(30)
+                    cooldown(cd)
                 }
 
                 if (finishedPattern == "147"){
                     game.changeShield(3)
                     game.changeMana(30)
+                    cooldown(cd)
                 }
 
                 if (finishedPattern == "258"){
@@ -132,8 +141,24 @@ class FirstFragment : Fragment() {
                 }
 
                 if (finishedPattern == "852"){
-                    dragon.attack()
+                    //dragon.attack()
                 }
+            }
+
+            fun cooldown(cd:Long){
+                object : CountDownTimer(cd, 1000) {
+                    override fun onTick(millisUntilFinished: Long) {
+                        wand.alpha = (1 - millisUntilFinished.toFloat() /10000.00).toFloat()
+                        spellBookView.alpha = (1 - millisUntilFinished.toFloat() /10000.00).toFloat()
+                        wand.isEnabled = false
+                    }
+
+                    override fun onFinish() {
+                        wand.alpha = 1f
+                        spellBookView.alpha = 1f
+                        wand.isEnabled = true
+                    }
+                }.start()
             }
 
             override fun onCleared() {
