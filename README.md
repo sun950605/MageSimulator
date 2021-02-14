@@ -13,3 +13,12 @@ Meteor strike is good against dragon type
 
 Use the correct type deals 2x damage
 
+
+
+
+# Running the project
+
+Open the project in android studio and click run, with api 29
+
+
+
