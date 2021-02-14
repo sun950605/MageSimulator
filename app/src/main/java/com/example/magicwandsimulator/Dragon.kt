@@ -100,7 +100,6 @@ class Dragon(private val drgView: ImageView , private val drgEffectView:ImageVie
     }
 
     fun changeState(type:Int){
-
         anim.stop()
         changiing = true
         android.util.Log.e("tag" ,"changing = ${changiing.toString()}")

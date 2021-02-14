@@ -122,19 +122,19 @@ class FirstFragment : Fragment() {
 
                 if (finishedPattern == "048"){
                     game.changeShield(1)
-                    game.changeMana(30)
+                    //game.changeMana(30)
                     cooldown(cd)
                 }
 
                 if (finishedPattern == "246"){
                     game.changeShield(2)
-                    game.changeMana(30)
+                    //game.changeMana(30)
                     cooldown(cd)
                 }
 
                 if (finishedPattern == "147"){
                     game.changeShield(3)
-                    game.changeMana(30)
+                   // game.changeMana(30)
                     cooldown(cd)
                 }
 

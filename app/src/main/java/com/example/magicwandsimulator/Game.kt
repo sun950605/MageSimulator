@@ -4,6 +4,7 @@ import android.graphics.drawable.AnimationDrawable
 import android.os.Handler
 import android.os.Looper
 import android.util.DisplayMetrics
+import android.view.View
 import android.widget.ImageView
 import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -59,16 +60,17 @@ class Game(private var hpBar: CardView , private var manaBar:CardView,private va
     }
 
     fun applyShield(_shieldId:Int){
-        if(shieldId == 1) {
-            shieldView.setBackgroundResource(R.color.fire)
-        }else if (shieldId == 2){
-            shieldView.setBackgroundResource(R.color.water)
+        shieldView.visibility = View.VISIBLE
+        var resourceID = if(_shieldId == 1) {
+            R.drawable.fire_shield
+        }else if (_shieldId == 2){
+            R.drawable.water_shield
         }else{
-            shieldView.setBackgroundResource(R.color.elec)
+            R.drawable.elec_shield
         }
 
         shieldView.apply {
-            setBackgroundResource(R.drawable.elec_shield)
+            setBackgroundResource(resourceID)
             shieldAnim = background as AnimationDrawable
         }
         shieldAnim.start()
@@ -78,7 +80,7 @@ class Game(private var hpBar: CardView , private var manaBar:CardView,private va
         shieldId = 0
         val handler = Handler(Looper.getMainLooper())
         val runnable:Runnable = Runnable {
-            shieldView.setBackgroundResource(R.color.background)
+            shieldView.visibility = View.INVISIBLE
             changeMana(30)
         }
         handler.post(runnable)
@@ -139,16 +141,19 @@ class Game(private var hpBar: CardView , private var manaBar:CardView,private va
     fun startAttack(){
         var timer = Random.nextLong(3,6)
         var type = Random.nextInt(1, 4)
-        while(type == previousMap) {
-            type = Random.nextInt(1, 4)
-        }
-        var changeType = Random.nextInt(1,5)
+        var changeType = Random.nextInt(1,6)
+
 
         android.util.Log.e("tag", type.toString())
         val handler = Handler(Looper.getMainLooper())
         val runnable:Runnable = Runnable {
-            if (changeType <= 3) {
-                dragon.changeState(type)
+            if (changeType == 1) {
+                var mapType = Random.nextInt(1,4)
+                while (mapType == previousMap){
+                    mapType = Random.nextInt(1,4)
+                }
+                dragon.changeState(mapType)
+                previousMap = mapType
                 startAttack()
             }else{
                 dragon.attack(type)
