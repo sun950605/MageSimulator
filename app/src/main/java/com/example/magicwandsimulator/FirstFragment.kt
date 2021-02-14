@@ -28,7 +28,7 @@ class FirstFragment : Fragment() {
     private lateinit var dragAnim: AnimationDrawable
     private lateinit var shieldView:ImageView
     private lateinit var game:Game
-
+    private lateinit var dragon:Dragon
 
 
     override fun onCreateView(
@@ -52,7 +52,7 @@ class FirstFragment : Fragment() {
 
 
         val dragImgView =  view.findViewById<ImageView>(R.id.dragon_img_view)
-        val dragon = Dragon(dragImgView)
+        dragon = Dragon(dragImgView)
         dragon.idle()
 
         context?.let{
@@ -90,21 +90,25 @@ class FirstFragment : Fragment() {
                 if (finishedPattern == "012" && game.mana >= 30){
                     spellFactory.meteor()
                     game.changeMana(-30)
+                    dragon.hit()
                 }
 
                 if (finishedPattern == "345" && game.mana >= 30){
                     spellFactory.lightning()
                     game.changeMana(-30)
+                    dragon.hit()
                 }
 
                 if (finishedPattern == "678" && game.mana >= 30){
                     spellFactory.fire()
                     game.changeMana(-30)
+                    dragon.hit()
                 }
 
                 if (finishedPattern == "036" && game.mana >= 30){
                     spellFactory.water()
                     game.changeMana(-30)
+                    dragon.hit()
                 }
 
                 if (finishedPattern == "048"){
@@ -123,6 +127,14 @@ class FirstFragment : Fragment() {
                     shieldView.setBackgroundResource(R.color.elec)
                     game.changeShield(3)
                     game.changeMana(30)
+                }
+
+                if (finishedPattern == "258"){
+                    dragon.hit()
+                }
+
+                if (finishedPattern == "852"){
+                    dragon.attack2()
                 }
             }
 
