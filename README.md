@@ -20,9 +20,9 @@ shield only blocks same element, successful block can prevent damage while gener
 SPEND YOUR MANA on powerful spell to defeat the evil dragon
 
 She changes type occasionally(The game world changes accordingly)
-  -fire attack is good against ice type
-  -ice attack is good against fire type
-  -Meteor strike is good against dragon type
+fire attack is good against ice type
+ice attack is good against fire type
+Meteor strike is good against dragon type
 
 Use the correct type deals 2x damage!!
 
