@@ -180,7 +180,7 @@ class Game(private val context: Context, private var hpBar: CardView, private va
     }
 
     fun startAttack(){
-        var timer = Random.nextLong(5,8)
+        var timer = Random.nextLong(4,6)
         var type = Random.nextInt(1, 4)
         var changeType = Random.nextInt(1,6)
 
