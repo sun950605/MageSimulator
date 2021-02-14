@@ -26,20 +26,24 @@ Meteor strike is good against dragon type
 
 Use the correct type deals 2x damage!!
 
-
-Cast this spell against fire attack\
+#Spell Book
+#Defensive Spells
+Cast this spell against fire attack
 <img src="./app/fire.jpg"  width="200" height="400">
-\
 
-Cast this spell against water attack\
+
+Cast this spell against water attack
 <img src="./app/water.jpg"  width="200" height="400">
-\
 
 
-Cast this spell against dragon attack\
+
+Cast this spell against dragon attack
 <img src="./app/drag.jpg"  width="200" height="400">
-\
 
 
+#Offensive Spells
+Start with column one to cast fire spells (good against water type)
+Start with column two to cast water spells (good against fire type)
+Start with column three to cast meteor strike (good against space type)
 
 
