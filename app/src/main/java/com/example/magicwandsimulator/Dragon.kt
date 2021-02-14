@@ -40,7 +40,7 @@ class Dragon(private val drgView: ImageView , private val drgEffectView:ImageVie
 
 
     fun hit(hit_type:Int){
-        android.util.Log.e("tag" , "hitting!!! ${changiing}")
+        //android.util.Log.e("tag" , "hitting!!! ${changiing}")
 
         if(changiing != true) {
 
@@ -124,7 +124,7 @@ class Dragon(private val drgView: ImageView , private val drgEffectView:ImageVie
     fun changeState(type:Int){
         anim.stop()
         changiing = true
-        android.util.Log.e("tag" ,"changing = ${changiing.toString()}")
+        //android.util.Log.e("tag" ,"changing = ${changiing.toString()}")
         drgView.apply {
             setBackgroundResource(R.drawable.drag_change_state)
             anim = background as AnimationDrawable
@@ -140,7 +140,7 @@ class Dragon(private val drgView: ImageView , private val drgEffectView:ImageVie
             idle()
             changiing = false
             game.changeMap(type)
-            android.util.Log.e("tag" ,"changing = ${changiing.toString()}")
+            //android.util.Log.e("tag" ,"changing = ${changiing.toString()}")
         }
         timer.schedule(timerTask, totalDuration)
 

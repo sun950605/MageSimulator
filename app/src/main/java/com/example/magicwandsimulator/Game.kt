@@ -44,7 +44,7 @@ class Game(private val context: Context, private var hpBar: CardView, private va
 
 
     fun setManaBar(){
-        android.util.Log.e("tag" , ((mana/maxMana) * width).toString())
+        //android.util.Log.e("tag" , ((mana/maxMana) * width).toString())
         var param = ConstraintLayout.LayoutParams((((mana/maxMana) * width)).toInt() , ConstraintLayout.LayoutParams.MATCH_PARENT)
         manaBar.layoutParams = param
         manaBar.radius = 30f
@@ -131,7 +131,7 @@ class Game(private val context: Context, private var hpBar: CardView, private va
             val endTime = SystemClock.elapsedRealtime()
             val elapsedMilliSeconds: Long = endTime - timer
             val elapsedSeconds = elapsedMilliSeconds / 1000.0
-            android.util.Log.e("game time" , elapsedSeconds.toString())
+            //android.util.Log.e("game time" , elapsedSeconds.toString())
             val intent = Intent(context, EndGameActivity::class.java)
             intent.putExtra("TIME" , elapsedSeconds)
             if (gameLoss) {
@@ -185,7 +185,7 @@ class Game(private val context: Context, private var hpBar: CardView, private va
         var changeType = Random.nextInt(1,6)
 
 
-        android.util.Log.e("tag", type.toString())
+        //android.util.Log.e("tag", type.toString())
         val handler = Handler(Looper.getMainLooper())
         val runnable:Runnable = Runnable {
             if (changeType == 1) {
@@ -209,14 +209,14 @@ class Game(private val context: Context, private var hpBar: CardView, private va
     }
 
     fun setHPBar(){
-        android.util.Log.e("my tag" , ((hp/maxHp) * width).toString())
+        //android.util.Log.e("my tag" , ((hp/maxHp) * width).toString())
         var param = ConstraintLayout.LayoutParams((((hp/maxHp) * width)).toInt() , ConstraintLayout.LayoutParams.MATCH_PARENT)
         hpBar.layoutParams = param
         hpBar.radius = 30f
     }
 
     fun setDragBar(){
-        android.util.Log.e("drag tag" , ((dragon.hp.toDouble()/dragon.maxHp.toDouble()) * width).toString())
+        //android.util.Log.e("drag tag" , ((dragon.hp.toDouble()/dragon.maxHp.toDouble()) * width).toString())
         var param = ConstraintLayout.LayoutParams((((dragon.hp.toDouble()/dragon.maxHp.toDouble()) * width)).toInt() , ConstraintLayout.LayoutParams.MATCH_PARENT)
         dragHPBar.layoutParams = param
         dragHPBar.radius = 10f

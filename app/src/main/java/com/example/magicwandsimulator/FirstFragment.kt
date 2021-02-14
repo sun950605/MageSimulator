@@ -87,21 +87,15 @@ class FirstFragment : Fragment() {
     private val mPatternLockViewListener: PatternLockViewListener =
         object : PatternLockViewListener {
             override fun onStarted() {
-                android.util.Log.e(javaClass.name, "Pattern drawing started")
+                //android.util.Log.e(javaClass.name, "Pattern drawing started")
             }
 
             override fun onProgress(progressPattern: List<PatternLockView.Dot>) {
-                android.util.Log.e(
-                    javaClass.name, "Pattern progress: " +
-                            PatternLockUtils.patternToString(wand, progressPattern)
-                )
+
             }
 
             override fun onComplete(pattern: List<PatternLockView.Dot>) {
-                android.util.Log.e(
-                    javaClass.name, "Pattern complete: " +
-                            PatternLockUtils.patternToString(wand, pattern)
-                )
+
 
                 val finishedPattern = PatternLockUtils.patternToString(wand, pattern);
                 if (finishedPattern == "048"){
@@ -173,7 +167,7 @@ class FirstFragment : Fragment() {
             }
 
             override fun onCleared() {
-                android.util.Log.e(javaClass.name, "Pattern has been cleared")
+                //android.util.Log.e(javaClass.name, "Pattern has been cleared")
             }
         }
 
