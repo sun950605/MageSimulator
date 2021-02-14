@@ -17,7 +17,7 @@ Drag and drop the MageSimulator.apk file under app/ folder to your emulator to i
 Draw your defensive spells on the spellbook to block her attacks\
 shield only blocks same element attacks successful block can prevent damage while generate HP and Mana \
 She changes type occasionally(The game world changes accordingly)\
-Use the correct type deals 2x damage!!\
+Use the correct type deals 2x damage!!
 
 # Defensive Spells
 Cast this spell against fire attack\
