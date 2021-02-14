@@ -14,7 +14,7 @@ import com.andrognito.patternlockview.PatternLockView
 import kotlin.random.Random
 
 
-class Game(private val context: Context, private var hpBar: CardView, private var manaBar:CardView, private var shieldView: ImageView, private val dragon: Dragon, private val spellBook:PatternLockView, private val mapView:ConstraintLayout) {
+class Game(private val context: Context, private var hpBar: CardView, private var manaBar:CardView, private var shieldView: ImageView, private val dragon: Dragon, private val spellBook:PatternLockView, private val mapView:ConstraintLayout ,private val dragHPBar:CardView) {
 
     private var shieldId = 0;
     var hp = 100.00;
@@ -162,6 +162,7 @@ class Game(private val context: Context, private var hpBar: CardView, private va
         handler.post(runnable)
     }
 
+
     fun changeDragonHp(change:Int){
         if (dragon.hp  - change <= 0){
             dragon.hp = 0
@@ -173,7 +174,7 @@ class Game(private val context: Context, private var hpBar: CardView, private va
 
         val handler = Handler(Looper.getMainLooper())
         val runnable:Runnable = Runnable {
-            //setHPBar()
+            setDragBar()
         }
         handler.post(runnable)
     }
@@ -208,10 +209,17 @@ class Game(private val context: Context, private var hpBar: CardView, private va
     }
 
     fun setHPBar(){
-        android.util.Log.e("tag" , ((hp/maxHp) * width).toString())
+        android.util.Log.e("my tag" , ((hp/maxHp) * width).toString())
         var param = ConstraintLayout.LayoutParams((((hp/maxHp) * width)).toInt() , ConstraintLayout.LayoutParams.MATCH_PARENT)
         hpBar.layoutParams = param
         hpBar.radius = 30f
+    }
+
+    fun setDragBar(){
+        android.util.Log.e("drag tag" , ((dragon.hp.toDouble()/dragon.maxHp.toDouble()) * width).toString())
+        var param = ConstraintLayout.LayoutParams((((dragon.hp.toDouble()/dragon.maxHp.toDouble()) * width)).toInt() , ConstraintLayout.LayoutParams.MATCH_PARENT)
+        dragHPBar.layoutParams = param
+        dragHPBar.radius = 10f
     }
 
 

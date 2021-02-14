@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
+import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -32,6 +33,7 @@ class FirstFragment : Fragment() {
     private lateinit var game:Game
     private lateinit var dragon:Dragon
     private lateinit var mapView:ConstraintLayout
+    lateinit var draghpBar:CardView
     private var cd:Long = 500
 
 
@@ -63,7 +65,7 @@ class FirstFragment : Fragment() {
         shieldView = view.findViewById(R.id.shield_view)
         mapView = view.findViewById(R.id.enemy_view)
         spellBookView = view.findViewById(R.id.spell_book_view)
-
+        draghpBar = view.findViewById(R.id.drag_hp_bar)
         val dragImgView =  view.findViewById<ImageView>(R.id.dragon_img_view)
         val dragonEffectView = view.findViewById<ImageView>(R.id.dragon_effect_view)
         dragon = Dragon(dragImgView , dragonEffectView)
@@ -73,7 +75,7 @@ class FirstFragment : Fragment() {
 
             val displayMetrics: DisplayMetrics = it.getResources().getDisplayMetrics()
             val margin = Math.round(10 / (displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT))
-            game = Game(it, view.findViewById(R.id.hp_bar) , view.findViewById(R.id.mana_bar) ,shieldView, dragon, wand , mapView)
+            game = Game(it, view.findViewById(R.id.hp_bar) , view.findViewById(R.id.mana_bar) ,shieldView, dragon, wand , mapView,draghpBar)
             game.init()
         }
         view.findViewById<Button>(R.id.button_first).setOnClickListener {
@@ -109,13 +111,13 @@ class FirstFragment : Fragment() {
                 }
 
                 else if (finishedPattern == "147"){
-                    game.changeShield(2)
+                    game.changeShield(3)
                     //game.changeMana(30)
                     cooldown(cd)
                 }
 
                 else if (finishedPattern == "246"){
-                    game.changeShield(3)
+                    game.changeShield(2)
                     //game.changeMana(30)
                     cooldown(cd)
                 }
@@ -137,14 +139,14 @@ class FirstFragment : Fragment() {
                         }
 
                         if (finishedPattern.length >=3 && finishedPattern[0] == '1' || finishedPattern[0] == '4' || finishedPattern[0] == '7'){
-                            spellFactory.water()
+                            spellFactory.meteor()
                             game.changeMana(-30)
                             dragon.hit(2)
                             cooldown(cd)
                         }
 
                         if (finishedPattern.length >=3 && finishedPattern[0] == '2' || finishedPattern[0] == '5' || finishedPattern[0] == '8' ){
-                            spellFactory.meteor()
+                            spellFactory.water()
                             game.changeMana(-30)
                             dragon.hit(3)
                             cooldown(cd)

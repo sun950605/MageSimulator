@@ -19,6 +19,7 @@ class Dragon(private val drgView: ImageView , private val drgEffectView:ImageVie
     private  var changiing = false
     private var FIRE_DAMAGE = 20.00
     var hp = 2000
+    val maxHp = 2000
     var type = 1
     fun idle(){
         beingHit = false

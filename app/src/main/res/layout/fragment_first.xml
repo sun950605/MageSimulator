@@ -19,22 +19,11 @@
         android:layout_width="match_parent"
         android:id="@+id/enemy_view"
         android:alpha="0.6"
-        android:paddingLeft="80dp"
-        android:paddingRight="80dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/spell_book_view"
         android:layout_height="0dp">
 
 
-        <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:id="@+id/drag_hp_bar"
-                android:layout_height="5dp"
-                app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginTop="100dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:cardBackgroundColor="#2ECA0B"
-                app:cardCornerRadius="5dp"/>
 
         <ImageView
             android:layout_marginTop="40dp"
@@ -47,6 +36,26 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_margin="10dp"
+            android:id="@+id/drag_hp_layout"
+            app:layout_constraintTop_toBottomOf="@id/dragon_img_view"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="15dp">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:id="@+id/drag_hp_bar"
+                android:layout_height="match_parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:cardBackgroundColor="#5BAA0C"
+                android:layout_marginBottom="10dp"
+                app:cardCornerRadius="30px"
+                />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
