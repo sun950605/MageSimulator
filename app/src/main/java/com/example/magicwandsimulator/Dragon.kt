@@ -18,6 +18,7 @@ class Dragon(private val drgView: ImageView , private val drgEffectView:ImageVie
     private  var changiing = false
     private var FIRE_DAMAGE = 20.00
     private var hp = 100
+    var type = 1
     fun idle(){
         beingHit = false
         drgView.apply {
@@ -117,6 +118,7 @@ class Dragon(private val drgView: ImageView , private val drgEffectView:ImageVie
         val timerTask: TimerTask = timerTask{
             idle()
             changiing = false
+            game.changeMap(type)
             android.util.Log.e("tag" ,"changing = ${changiing.toString()}")
         }
         timer.schedule(timerTask, totalDuration)

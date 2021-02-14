@@ -30,6 +30,7 @@ class FirstFragment : Fragment() {
     private lateinit var spellBookView:ImageView
     private lateinit var game:Game
     private lateinit var dragon:Dragon
+    private lateinit var mapView:ConstraintLayout
     private var cd:Long = 500
 
 
@@ -51,6 +52,7 @@ class FirstFragment : Fragment() {
         wand =  view.findViewById(R.id.pattern_lock_view);
         wand.addPatternLockListener(mPatternLockViewListener);
         shieldView = view.findViewById(R.id.shield_view)
+        mapView = view.findViewById(R.id.enemy_view)
         spellBookView = view.findViewById(R.id.spell_book_view)
 
         val dragImgView =  view.findViewById<ImageView>(R.id.dragon_img_view)
@@ -61,7 +63,7 @@ class FirstFragment : Fragment() {
         context?.let{
             val displayMetrics: DisplayMetrics = it.getResources().getDisplayMetrics()
             val margin = Math.round(10 / (displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT))
-            game = Game(view.findViewById(R.id.hp_bar) , view.findViewById(R.id.mana_bar) ,shieldView, dragon, wand)
+            game = Game(view.findViewById(R.id.hp_bar) , view.findViewById(R.id.mana_bar) ,shieldView, dragon, wand , mapView)
             game.init()
         }
         view.findViewById<Button>(R.id.button_first).setOnClickListener {

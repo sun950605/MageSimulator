@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:oneshot="false">
+
+    <item android:drawable="@drawable/ws1" android:duration="100" />
+    <item android:drawable="@drawable/ws2" android:duration="100" />
+    <item android:drawable="@drawable/ws3" android:duration="100" />
+    <item android:drawable="@drawable/ws4" android:duration="100" />
+    <item android:drawable="@drawable/ws5" android:duration="100" />
+    <item android:drawable="@drawable/ws6" android:duration="100" />
+    <item android:drawable="@drawable/ws7" android:duration="100" />
+    <item android:drawable="@drawable/ws8" android:duration="100" />
+
+</animation-list>

@@ -1,5 +1,6 @@
 package com.example.magicwandsimulator
 
+import android.graphics.drawable.AnimationDrawable
 import android.os.Handler
 import android.os.Looper
 import android.util.DisplayMetrics
@@ -10,7 +11,7 @@ import com.andrognito.patternlockview.PatternLockView
 import kotlin.random.Random
 
 
-class Game(private var hpBar: CardView , private var manaBar:CardView,private var shieldView: ImageView , private val dragon: Dragon, private val spellBook:PatternLockView) {
+class Game(private var hpBar: CardView , private var manaBar:CardView,private var shieldView: ImageView , private val dragon: Dragon, private val spellBook:PatternLockView , private val mapView:ConstraintLayout) {
 
     private var shieldId = 0;
     var hp = 100.00;
@@ -19,9 +20,14 @@ class Game(private var hpBar: CardView , private var manaBar:CardView,private va
     private val maxHp = 100.00
     private val width = MainActivity.getScreenWidth().toDouble()
     private var gameOver = false;
+    var previousMap:Int = 0
+    lateinit var shieldAnim: AnimationDrawable
 
     fun init(){
         dragon.setGame(this)
+        dragon.type = Random.nextInt(1,4)
+        previousMap = dragon.type
+        changeMap(dragon.type)
         startAttack()
     }
 
@@ -60,6 +66,12 @@ class Game(private var hpBar: CardView , private var manaBar:CardView,private va
         }else{
             shieldView.setBackgroundResource(R.color.elec)
         }
+
+        shieldView.apply {
+            setBackgroundResource(R.drawable.elec_shield)
+            shieldAnim = background as AnimationDrawable
+        }
+        shieldAnim.start()
     }
 
     fun removeShield(){
@@ -71,6 +83,26 @@ class Game(private var hpBar: CardView , private var manaBar:CardView,private va
         }
         handler.post(runnable)
     }
+
+    fun changeMap(type:Int){
+        val resourceID = if (type == 1){
+            R.drawable.volcano
+        }
+
+        else if (type == 2){
+            R.drawable.ice
+        }
+        else{
+            R.drawable.space
+        }
+        val handler = Handler(Looper.getMainLooper())
+        val runnable:Runnable = Runnable {
+            mapView.setBackgroundResource(resourceID)
+            previousMap = type
+        }
+        handler.post(runnable)
+    }
+
 
     fun changeMana(change:Int){
         if (mana + change >= maxMana){
@@ -106,13 +138,16 @@ class Game(private var hpBar: CardView , private var manaBar:CardView,private va
 
     fun startAttack(){
         var timer = Random.nextLong(3,6)
-        var type = Random.nextInt(1,4)
+        var type = Random.nextInt(1, 4)
+        while(type == previousMap) {
+            type = Random.nextInt(1, 4)
+        }
         var changeType = Random.nextInt(1,5)
 
         android.util.Log.e("tag", type.toString())
         val handler = Handler(Looper.getMainLooper())
         val runnable:Runnable = Runnable {
-            if (changeType == 1) {
+            if (changeType <= 3) {
                 dragon.changeState(type)
                 startAttack()
             }else{
