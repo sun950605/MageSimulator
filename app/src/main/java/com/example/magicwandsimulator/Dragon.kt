@@ -11,7 +11,6 @@ import kotlin.concurrent.timerTask
 class Dragon(private val drgView: ImageView , private val drgEffectView:ImageView){
     private lateinit var anim: AnimationDrawable
     private lateinit var efffectAnim: AnimationDrawable
-    private lateinit var idel2Anim: AnimationDrawable
     private lateinit var game:Game
     private  var attacking = false
     private  var beingHit = false
@@ -29,6 +28,10 @@ class Dragon(private val drgView: ImageView , private val drgEffectView:ImageVie
     }
 
 
+    fun killDragon(){
+        efffectAnim?.stop()
+        anim?.stop()
+    }
     fun hit(){
         android.util.Log.e("tag" , "hitting!!! ${changiing}")
         if(changiing != true) {

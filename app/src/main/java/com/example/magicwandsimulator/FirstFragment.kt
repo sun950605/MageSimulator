@@ -60,10 +60,10 @@ class FirstFragment : Fragment() {
         dragon = Dragon(dragImgView , dragonEffectView)
         dragon.idle()
 
-        context?.let{
+        activity?.let{
             val displayMetrics: DisplayMetrics = it.getResources().getDisplayMetrics()
             val margin = Math.round(10 / (displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT))
-            game = Game(view.findViewById(R.id.hp_bar) , view.findViewById(R.id.mana_bar) ,shieldView, dragon, wand , mapView)
+            game = Game(it, view.findViewById(R.id.hp_bar) , view.findViewById(R.id.mana_bar) ,shieldView, dragon, wand , mapView)
             game.init()
         }
         view.findViewById<Button>(R.id.button_first).setOnClickListener {
@@ -98,18 +98,18 @@ class FirstFragment : Fragment() {
                     cooldown(cd)
                 }
 
-                else if (finishedPattern == "246"){
+                else if (finishedPattern == "147"){
                     game.changeShield(2)
                     //game.changeMana(30)
                     cooldown(cd)
                 }
 
-                else if (finishedPattern == "147"){
+                else if (finishedPattern == "246"){
                     game.changeShield(3)
                     //game.changeMana(30)
                     cooldown(cd)
                 }
-                else if (finishedPattern == "0124678"){
+                else if (finishedPattern == "0124678"&& game.mana>=30){
                     spellFactory.lightning()
                     game.changeMana(-30)
                     dragon.hit()
@@ -118,30 +118,28 @@ class FirstFragment : Fragment() {
 
 
                 else{
-                    if (finishedPattern.length >=3 && finishedPattern[0] == '0' || finishedPattern[0] == '3' || finishedPattern[0] == '6' ){
-                        spellFactory.fire()
-                        game.changeMana(-30)
-                        dragon.hit()
-                        cooldown(cd)
+                    if (game.mana >= 30){
+                        if (finishedPattern.length >=3 && finishedPattern[0] == '0' || finishedPattern[0] == '3' || finishedPattern[0] == '6' ){
+                            spellFactory.fire()
+                            game.changeMana(-30)
+                            dragon.hit()
+                            cooldown(cd)
+                        }
+
+                        if (finishedPattern.length >=3 && finishedPattern[0] == '1' || finishedPattern[0] == '4' || finishedPattern[0] == '7'){
+                            spellFactory.water()
+                            game.changeMana(-30)
+                            dragon.hit()
+                            cooldown(cd)
+                        }
+
+                        if (finishedPattern.length >=3 && finishedPattern[0] == '2' || finishedPattern[0] == '5' || finishedPattern[0] == '8' ){
+                            spellFactory.meteor()
+                            game.changeMana(-30)
+                            dragon.hit()
+                            cooldown(cd)
+                        }
                     }
-
-                    if (finishedPattern.length >=3 && finishedPattern[0] == '1' || finishedPattern[0] == '4' || finishedPattern[0] == '7' ){
-                        spellFactory.water()
-                        game.changeMana(-30)
-                        dragon.hit()
-                        cooldown(cd)
-                    }
-
-                    if (finishedPattern.length >=3 && finishedPattern[0] == '2' || finishedPattern[0] == '5' || finishedPattern[0] == '8' ){
-                        spellFactory.meteor()
-                        game.changeMana(-30)
-                        dragon.hit()
-                        cooldown(cd)
-                    }
-
-
-
-
                 }
 
             }

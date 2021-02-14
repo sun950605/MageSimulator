@@ -1,18 +1,22 @@
 package com.example.magicwandsimulator
 
+import android.app.Activity
+import android.content.Context
+import android.content.Intent
 import android.graphics.drawable.AnimationDrawable
 import android.os.Handler
 import android.os.Looper
-import android.util.DisplayMetrics
 import android.view.View
 import android.widget.ImageView
 import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.fragment.app.FragmentActivity
 import com.andrognito.patternlockview.PatternLockView
+import java.util.*
 import kotlin.random.Random
 
 
-class Game(private var hpBar: CardView , private var manaBar:CardView,private var shieldView: ImageView , private val dragon: Dragon, private val spellBook:PatternLockView , private val mapView:ConstraintLayout) {
+class Game(private val context: Context, private var hpBar: CardView, private var manaBar:CardView, private var shieldView: ImageView, private val dragon: Dragon, private val spellBook:PatternLockView, private val mapView:ConstraintLayout) {
 
     private var shieldId = 0;
     var hp = 100.00;
@@ -23,6 +27,8 @@ class Game(private var hpBar: CardView , private var manaBar:CardView,private va
     private var gameOver = false;
     var previousMap:Int = 0
     lateinit var shieldAnim: AnimationDrawable
+    private lateinit var timer: Timer
+    private var gameCleared = false
 
     fun init(){
         dragon.setGame(this)
@@ -35,10 +41,6 @@ class Game(private var hpBar: CardView , private var manaBar:CardView,private va
     fun changeShield(id:Int){
         shieldId = id
         applyShield(id)
-    }
-
-    fun getShieldId():Int{
-        return shieldId
     }
 
 
@@ -120,11 +122,23 @@ class Game(private var hpBar: CardView , private var manaBar:CardView,private va
         setManaBar()
     }
 
+    fun clearGame(){
+        if (::shieldAnim.isInitialized){
+            shieldAnim?.stop()
+        }
+        dragon.killDragon()
+        if(!gameCleared){
+            gameCleared = true
+            context.startActivity(Intent(context, EndGameActivity::class.java))
+        }
+
+    }
 
     fun changeHp(change:Double){
         if (hp  - change <= 0.00){
             hp = 0.00
             gameOver = true
+            clearGame()
         }else if (hp - change  >= 100){
             hp = 100.00
         }else{
@@ -154,10 +168,14 @@ class Game(private var hpBar: CardView , private var manaBar:CardView,private va
                 }
                 dragon.changeState(mapType)
                 previousMap = mapType
-                startAttack()
+                if(!gameOver) {
+                    startAttack()
+                }
             }else{
                 dragon.attack(type)
-                startAttack()
+                if(!gameOver) {
+                    startAttack()
+                }
             }
         }
         handler.postDelayed(runnable , timer * 1000)
