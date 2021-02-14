@@ -168,12 +168,12 @@ class Game(private val context: Context, private var hpBar: CardView, private va
             gameWin = true
             clearGame()
         } else{
-            hp -= change
+            dragon.hp -= change
         }
 
         val handler = Handler(Looper.getMainLooper())
         val runnable:Runnable = Runnable {
-            setHPBar()
+            //setHPBar()
         }
         handler.post(runnable)
     }

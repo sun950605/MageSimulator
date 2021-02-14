@@ -2,16 +2,16 @@
 <animation-list xmlns:android="http://schemas.android.com/apk/res/android"
     android:oneshot="true">
 
-    <item android:drawable="@drawable/wa1" android:duration="150" />
-    <item android:drawable="@drawable/wa2" android:duration="150" />
-    <item android:drawable="@drawable/wa3" android:duration="150" />
-    <item android:drawable="@drawable/wa4" android:duration="150" />
-    <item android:drawable="@drawable/wa5" android:duration="150" />
-    <item android:drawable="@drawable/wa6" android:duration="150" />
-    <item android:drawable="@drawable/wa7" android:duration="150" />
-    <item android:drawable="@drawable/wa8" android:duration="150" />
-    <item android:drawable="@drawable/wa9" android:duration="150" />
-    <item android:drawable="@drawable/wa10" android:duration="150" />
-    <item android:drawable="@drawable/wa11" android:duration="150" />
+    <item android:drawable="@drawable/wa1" android:duration="200" />
+    <item android:drawable="@drawable/wa2" android:duration="200" />
+    <item android:drawable="@drawable/wa3" android:duration="200" />
+    <item android:drawable="@drawable/wa4" android:duration="200" />
+    <item android:drawable="@drawable/wa5" android:duration="200" />
+    <item android:drawable="@drawable/wa6" android:duration="200" />
+    <item android:drawable="@drawable/wa7" android:duration="200" />
+    <item android:drawable="@drawable/wa8" android:duration="200" />
+    <item android:drawable="@drawable/wa9" android:duration="200" />
+    <item android:drawable="@drawable/wa10" android:duration="200" />
+    <item android:drawable="@drawable/wa11" android:duration="200" />
 
 </animation-list>
