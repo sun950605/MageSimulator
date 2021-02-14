@@ -28,20 +28,20 @@ Use the correct type deals 2x damage!!
 
 #Spell Book
 #Defensive Spells
-Cast this spell against fire attack
+Cast this spell against fire attack\
 <img src="./app/fire.jpg"  width="200" height="400">
-\
 
 
-Cast this spell against water attack
+
+Cast this spell against water attack\
 <img src="./app/water.jpg"  width="200" height="400">
-\
 
 
 
-Cast this spell against dragon attack
+
+Cast this spell against dragon attack\
 <img src="./app/drag.jpg"  width="200" height="400">
-\
+
 
 
 #Offensive Spells
