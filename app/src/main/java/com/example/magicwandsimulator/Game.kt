@@ -162,8 +162,24 @@ class Game(private val context: Context, private var hpBar: CardView, private va
         handler.post(runnable)
     }
 
+    fun changeDragonHp(change:Int){
+        if (dragon.hp  - change <= 0){
+            dragon.hp = 0
+            gameWin = true
+            clearGame()
+        } else{
+            hp -= change
+        }
+
+        val handler = Handler(Looper.getMainLooper())
+        val runnable:Runnable = Runnable {
+            setHPBar()
+        }
+        handler.post(runnable)
+    }
+
     fun startAttack(){
-        var timer = Random.nextLong(3,6)
+        var timer = Random.nextLong(5,8)
         var type = Random.nextInt(1, 4)
         var changeType = Random.nextInt(1,6)
 

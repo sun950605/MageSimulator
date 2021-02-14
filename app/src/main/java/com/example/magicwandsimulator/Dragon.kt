@@ -2,6 +2,8 @@ package com.example.magicwandsimulator
 
 import android.R.attr.animation
 import android.graphics.drawable.AnimationDrawable
+import android.os.Handler
+import android.os.Looper
 import android.view.View
 import android.widget.ImageView
 import java.util.*
@@ -16,7 +18,7 @@ class Dragon(private val drgView: ImageView , private val drgEffectView:ImageVie
     private  var beingHit = false
     private  var changiing = false
     private var FIRE_DAMAGE = 20.00
-    private var hp = 100
+    var hp = 2000
     var type = 1
     fun idle(){
         beingHit = false
@@ -32,11 +34,27 @@ class Dragon(private val drgView: ImageView , private val drgEffectView:ImageVie
         efffectAnim?.stop()
         anim?.stop()
     }
-    fun hit(){
+
+
+
+
+    fun hit(hit_type:Int){
         android.util.Log.e("tag" , "hitting!!! ${changiing}")
+
         if(changiing != true) {
+
+            var damage = if (type == 1 && hit_type == 2){
+                200
+            }else if (type == 2 && hit_type == 1){
+                200
+            }else if (type == 3 && hit_type ==3){
+                200
+            }else{
+                100
+            }
+
             beingHit = true
-            //anim.stop()
+            game.changeDragonHp(damage)
             drgView.apply {
                 setBackgroundResource(R.drawable.drag_attack1)
                 anim = background as AnimationDrawable

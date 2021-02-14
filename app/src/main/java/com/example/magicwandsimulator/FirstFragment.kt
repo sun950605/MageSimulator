@@ -122,7 +122,7 @@ class FirstFragment : Fragment() {
                 else if (finishedPattern == "0124678"&& game.mana>=30){
                     spellFactory.lightning()
                     game.changeMana(-30)
-                    dragon.hit()
+                    dragon.hit(4)
                     cooldown(cd)
                 }
 
@@ -132,21 +132,21 @@ class FirstFragment : Fragment() {
                         if (finishedPattern.length >=3 && finishedPattern[0] == '0' || finishedPattern[0] == '3' || finishedPattern[0] == '6' ){
                             spellFactory.fire()
                             game.changeMana(-30)
-                            dragon.hit()
+                            dragon.hit(1)
                             cooldown(cd)
                         }
 
                         if (finishedPattern.length >=3 && finishedPattern[0] == '1' || finishedPattern[0] == '4' || finishedPattern[0] == '7'){
                             spellFactory.water()
                             game.changeMana(-30)
-                            dragon.hit()
+                            dragon.hit(2)
                             cooldown(cd)
                         }
 
                         if (finishedPattern.length >=3 && finishedPattern[0] == '2' || finishedPattern[0] == '5' || finishedPattern[0] == '8' ){
                             spellFactory.meteor()
                             game.changeMana(-30)
-                            dragon.hit()
+                            dragon.hit(3)
                             cooldown(cd)
                         }
                     }
