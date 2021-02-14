@@ -2,6 +2,7 @@
 
 Fight against Onyxia the black dragon by drawing out spells on your phone!
 
+Inspried by World of Warcraft lores and comics, the game play is similar to a boss raid
 
 
 # Running the project
