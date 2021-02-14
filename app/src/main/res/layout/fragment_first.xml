@@ -14,6 +14,46 @@
         android:layout_height="0dp">
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_margin="10dp"
+    android:id="@+id/hp_layout"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    android:layout_width="match_parent"
+    android:layout_height="15dp">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:id="@+id/hp_bar"
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:cardBackgroundColor="@color/fire"
+        app:cardCornerRadius="30px"
+        />
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_margin="10dp"
+        android:id="@+id/mana_layout"
+        app:layout_constraintTop_toBottomOf="@id/hp_layout"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="15dp">
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:id="@+id/mana_bar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:cardBackgroundColor="#2B26CA"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="parent"
+            app:cardCornerRadius="30px"
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
     <TextView
         android:id="@+id/textview_first"
         android:layout_width="wrap_content"

@@ -1,11 +1,12 @@
 package com.example.magicwandsimulator
 
+import android.content.res.Resources
 import android.os.Bundle
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
-import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.snackbar.Snackbar
 
 class MainActivity : AppCompatActivity() {
 
@@ -34,5 +35,16 @@ class MainActivity : AppCompatActivity() {
             R.id.action_settings -> true
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    companion object{
+        fun getScreenWidth(): Int {
+            return Resources.getSystem().getDisplayMetrics().widthPixels
+        }
+
+        fun getScreenHeight(): Int {
+            return Resources.getSystem().getDisplayMetrics().heightPixels
+        }
+
     }
 }

@@ -2,6 +2,7 @@ package com.example.magicwandsimulator
 
 import android.graphics.drawable.AnimationDrawable
 import android.os.Bundle
+import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -25,7 +26,7 @@ class FirstFragment : Fragment() {
     private lateinit var spellFactory:SpellFactory
     private lateinit var shieldAnim: AnimationDrawable
     private lateinit var shieldView:ImageView
-    private val game = Game()
+    private lateinit var game:Game
 
 
     private val mPatternLockViewListener: PatternLockViewListener =
@@ -48,35 +49,42 @@ class FirstFragment : Fragment() {
                 )
 
                 val finishedPattern = PatternLockUtils.patternToString(wand, pattern);
-                if (finishedPattern == "012"){
+                if (finishedPattern == "012" && game.mana >= 30){
                     spellFactory.meteor()
+                    game.changeMana(-30)
                 }
 
-                if (finishedPattern == "345"){
+                if (finishedPattern == "345" && game.mana >= 30){
                     spellFactory.lightning()
+                    game.changeMana(-30)
                 }
 
-                if (finishedPattern == "678"){
+                if (finishedPattern == "678" && game.mana >= 30){
                     spellFactory.fire()
+                    game.changeMana(-30)
                 }
 
-                if (finishedPattern == "036"){
+                if (finishedPattern == "036" && game.mana >= 30){
                     spellFactory.water()
+                    game.changeMana(-30)
                 }
 
                 if (finishedPattern == "048"){
                     shieldView.setBackgroundResource(R.color.fire)
                     game.changeShield(1)
+                    game.changeMana(30)
                 }
 
                 if (finishedPattern == "246"){
                     shieldView.setBackgroundResource(R.color.water)
                     game.changeShield(2)
+                    game.changeMana(30)
                 }
 
                 if (finishedPattern == "147"){
                     shieldView.setBackgroundResource(R.color.elec)
                     game.changeShield(3)
+                    game.changeMana(30)
                 }
             }
 
@@ -97,11 +105,18 @@ class FirstFragment : Fragment() {
         activity?.let{
             spellFactory = SpellFactory(it)
         }
+
         effect_view = view.findViewById(R.id.effect_content_view)
         wand =  view.findViewById(R.id.pattern_lock_view);
         wand.addPatternLockListener(mPatternLockViewListener);
         shieldView = view.findViewById(R.id.shield_view)
 
+        context?.let{
+            val displayMetrics: DisplayMetrics = it.getResources().getDisplayMetrics()
+            val margin = Math.round(10 / (displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT))
+            game = Game(view.findViewById(R.id.hp_bar) , view.findViewById(R.id.mana_bar))
+
+        }
         view.findViewById<Button>(R.id.button_first).setOnClickListener {
             findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
         }
