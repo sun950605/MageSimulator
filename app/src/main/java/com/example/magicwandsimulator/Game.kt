@@ -5,6 +5,7 @@ import android.content.Intent
 import android.graphics.drawable.AnimationDrawable
 import android.os.Handler
 import android.os.Looper
+import android.os.SystemClock
 import android.view.View
 import android.widget.ImageView
 import androidx.cardview.widget.CardView
@@ -21,7 +22,6 @@ class Game(private val context: Context, private var hpBar: CardView, private va
     private val maxMana = 90.00
     private val maxHp = 100.00
     private val width = MainActivity.getScreenWidth().toDouble()
-    private var gameOver = false;
     var previousMap:Int = 0
     lateinit var shieldAnim: AnimationDrawable
     private  var timer: Long = 0
@@ -34,7 +34,7 @@ class Game(private val context: Context, private var hpBar: CardView, private va
         previousMap = dragon.type
         changeMap(dragon.type)
         startAttack()
-        var timer = System.currentTimeMillis()
+        timer = SystemClock.elapsedRealtime();
     }
 
     fun changeShield(id:Int){
@@ -128,9 +128,10 @@ class Game(private val context: Context, private var hpBar: CardView, private va
         dragon.killDragon()
         if(!gameCleared){
             gameCleared = true
-            val tEnd = System.currentTimeMillis()
-            val tDelta: Long = tEnd - timer
-            val elapsedSeconds = tDelta / 1000.0
+            val endTime = SystemClock.elapsedRealtime()
+            val elapsedMilliSeconds: Long = endTime - timer
+            val elapsedSeconds = elapsedMilliSeconds / 1000.0
+            android.util.Log.e("game time" , elapsedSeconds.toString())
             val intent = Intent(context, EndGameActivity::class.java)
             intent.putExtra("TIME" , elapsedSeconds)
             if (gameLoss) {

@@ -23,6 +23,8 @@
             android:name="com.google.android.wearable.standalone"
             android:value="false" />
 
+        <service android:enabled="true" android:name=".BackgroundSoundService" />
+
         <activity
             android:name=".EndGameActivity"
             android:label="@string/title_activity_end_game"></activity>

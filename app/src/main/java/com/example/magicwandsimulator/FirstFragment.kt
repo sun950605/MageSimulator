@@ -1,5 +1,6 @@
 package com.example.magicwandsimulator
 
+import android.content.Intent
 import android.graphics.drawable.AnimationDrawable
 import android.os.Bundle
 import android.os.CountDownTimer
@@ -42,6 +43,14 @@ class FirstFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_first, container, false)
     }
 
+    override fun onResume() {
+        super.onResume()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        //backgroundSound.cancel(true);
+    }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         activity?.let{
@@ -61,6 +70,7 @@ class FirstFragment : Fragment() {
         dragon.idle()
 
         activity?.let{
+
             val displayMetrics: DisplayMetrics = it.getResources().getDisplayMetrics()
             val margin = Math.round(10 / (displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT))
             game = Game(it, view.findViewById(R.id.hp_bar) , view.findViewById(R.id.mana_bar) ,shieldView, dragon, wand , mapView)

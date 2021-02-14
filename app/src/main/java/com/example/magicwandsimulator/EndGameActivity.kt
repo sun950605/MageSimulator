@@ -23,6 +23,10 @@ class EndGameActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_end_game)
+        try {
+            this.supportActionBar!!.hide()
+        } catch (e: NullPointerException) {
+        }
 
         restart = findViewById(R.id.game_restart_button)
         gameStat = findViewById(R.id.game_stat)
